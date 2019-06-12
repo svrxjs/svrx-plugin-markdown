@@ -89,3 +89,7 @@ typings/
 .dynamodb/
 
 # End of https://www.gitignore.io/api/node
+
+
+# ignore assets
+assets/index.js
