@@ -7,12 +7,13 @@ function isMarkdown(url) {
 }
 
 module.exports = {
-    propModels: {
-        port: {
-            type: 'number',
-            default: 8000
-        }
+  configSchema: {
+    auto: {
+      type: 'boolean',
+      default: true,
+      description: 'auto jump to the markdown you are editing'
     },
+  },
 
     assets: {
         test: isMarkdown,
@@ -43,7 +44,7 @@ module.exports = {
             await next();
         },
         async onCreate({ io, config, events, logger }) {
-
+            const root = config.get('$.root');
             events.on('file:change', (evt)=>{
                 const payload = evt.payload;
                 if( isMarkdown( payload.path ) ){
@@ -51,14 +52,14 @@ module.exports = {
                     evt.stop();
                     // only transfer path to avoid 
                     io.emit('markdown:change', { 
-                        path: payload.path
+                        path: libPath.relative(root, payload.path)
                     })
                 }
             })
 
             io.registService('markdown.content', async (payload) => {
                 return new Promise((resolve, reject) => {
-                    libFs.readFile(libPath.resolve(config.get('$.root'), payload), 'utf8', (err, content) => {
+                    libFs.readFile(libPath.resolve(root, payload), 'utf8', (err, content) => {
                         if (err) return reject(err);
                         else resolve(content);
                     });

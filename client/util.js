@@ -27,3 +27,18 @@ export function  getTarget(record) {
         return  record.previousSibling || record.nextSibling
     }
 }
+
+export function debounce(fn, delay) {
+
+    delay = typeof delay === 'number' ? delay : 300;
+  
+    let timer;
+    return function(...args) {
+      if (timer) clearTimeout(timer);
+      let self = this;
+      timer = setTimeout(function() {
+        fn.apply(self, args)
+      }, delay)
+    }
+  }
+  

@@ -1,28 +1,50 @@
 import ReactMarkdown from 'react-markdown';
+import htmlParser from 'react-markdown/plugins/html-parser';
 import ErrorBoundary from './error';
 import { render as _render } from 'react-dom';
 import React from 'react';
 import Code from './code';
-import { inViewport, findParent, getTarget } from './util';
+import { inViewport, findParent, getTarget, debounce } from './util';
 
-const svrx = window.__svrx__;
-const {io,events} = svrx; 
+const {io, config} = svrx; 
 const pathname = location.pathname.slice(1);
+
+const parseHtml = htmlParser({
+    isValidNode: node => node.type !== 'script',
+    // processingInstructions: [/* ... */]
+})
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = { input: '' };
 
+        this.nav = debounce(function(path){
+            location.href = path;
+        })
+
+
         this.fetchState().then(() => this.tryStartMutation());
 
-        io.on('markdown:change', (evt) => {
-            if (evt.payload.path.indexOf(pathname) !== -1) {
+
+        let auto = true;
+
+        config.get('auto').then( isAuto=>{
+            auto = isAuto
+        })
+
+
+        io.on('markdown:change', ({payload}) => {
+            if(payload.path === pathname){ //otherfalse
                 this.fetchState();
+            }else if(auto){
+                this.nav(('/' + payload.path).replace('//', '/'));
             }
             // 取得
         });
     }
+
+
 
     changeInput(input) {
         this.setState({
@@ -84,7 +106,11 @@ class App extends React.Component {
         const renderers = { code: Code };
         return (
             <ErrorBoundary>
-                <ReactMarkdown source={input} renderers={renderers} />
+                <ReactMarkdown 
+                    escapeHtml={false}         
+                    source={input} 
+                    astPlugins={[parseHtml]}
+                    renderers={renderers} />
             </ErrorBoundary>
         );
     }
