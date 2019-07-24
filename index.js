@@ -43,13 +43,11 @@ module.exports = {
             }
             await next();
         },
-        async onCreate({ io, config, events, logger }) {
+        async onCreate({ io, config, events }) {
             const root = config.get('$.root');
-            events.on('file:change', (evt)=>{
-                const payload = evt.payload;
+            events.on('file:change', (payload, ctrl)=>{
                 if( isMarkdown( payload.path ) ){
-                    evt.prevent = true;
-                    evt.stop();
+                    ctrl.stop();
                     // only transfer path to avoid 
                     io.emit('markdown:change', { 
                         path: libPath.relative(root, payload.path)

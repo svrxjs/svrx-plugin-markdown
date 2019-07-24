@@ -10,10 +10,8 @@ markdown plugin for [svrx](https://github.com/x-orpheus/svrx)
 
 ### cli
 
-```shell
-
+```sh
 svrx --markdown
-
 ```
 
 ### manual
@@ -21,13 +19,9 @@ svrx --markdown
 ```js
 const svrx = require('svrx');
 
-svrx({
-  plugins: [ 'markdown' ]
-}).start();
+svrx({ plugins: [ 'markdown' ] }).start();
 ```
 
 ## Options
 
-- auto: `boolean`,auto jump to the markdown you are editing. default is `true`.
-
-
+- auto: `boolean`,auto jump to the markdown you are editing. default is `true`
