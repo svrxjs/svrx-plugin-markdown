@@ -34,7 +34,7 @@ class App extends React.Component {
         })
 
 
-        io.on('markdown:change', ({payload}) => {
+        io.on('markdown:change', (payload) => {
             if(payload.path === pathname){ //otherfalse
                 this.fetchState();
             }else if(auto){
