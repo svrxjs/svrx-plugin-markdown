@@ -8,7 +8,7 @@ function Code(props){
 
     return (
       <SyntaxHighlighter language={language}>
-        {value}
+        {value || ''}
       </SyntaxHighlighter>
     );
 }
