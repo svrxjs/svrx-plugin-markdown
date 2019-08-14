@@ -1,5 +1,7 @@
 # svrx-plugin-webpack
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/x-orpheus/svrx-plugin-markdown.svg)](https://greenkeeper.io/)
+
 markdown plugin for [svrx](https://github.com/x-orpheus/svrx)
 
 ## Usage
