@@ -1,4 +1,4 @@
-# svrx-plugin-webpack
+# svrx-plugin-markdown
 
 markdown plugin for [svrx](https://github.com/x-orpheus/svrx)
 
