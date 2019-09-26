@@ -1,6 +1,6 @@
 {
   "name": "svrx-plugin-markdown",
-  "version": "0.0.7",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,11 +9,12 @@
     "dev": "webpack -w --config webpack.config.js --mode development"
   },
   "engines": {
-    "svrx": "~0.0.4"
+    "svrx": "^1.0.0"
   },
   "keywords": [
     "svrx",
-    "svrx-plugin"
+    "svrx-plugin",
+    "markdown"
   ],
   "license": "MIT",
   "devDependencies": {
