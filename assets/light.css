@@ -1,0 +1,54 @@
+/*
+raycon/vscode-markdown-style https://github.com/raycon/vscode-markdown-style/blob/master/LICENSE.md
+MIT Copyright (c) 2016 Raegon Kim
+
+
+*/
+.light{
+	background-color:#fafafa;
+}
+.light a {
+	color: #2980b9;
+}
+
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light h5,
+.light h6 {
+	font-weight: 600;
+}
+
+.light,
+.light pre code {
+	color: #333;
+}
+
+.light code {
+	color: #c0392b;
+}
+
+.light pre:not(.hljs),
+.light code>div {
+	color: #333;
+	background-color: #f8f8f8;
+	font-weight: normal;
+}
+
+.light table>thead>tr>th {
+	border-color: #ddd;
+}
+
+.light h1,
+.light hr,
+.light table>tbody>tr+tr>td {
+	border-color: #eee;
+}
+
+.light blockquote {
+	padding: 0 1em;
+	color: #777;
+	border-left: 0.25em solid #ddd;
+	background: transparent;
+}

@@ -13,12 +13,17 @@ module.exports = {
       default: true,
       description: 'auto jump to the markdown you are editing'
     },
+    theme: {
+      type: 'string',
+      default: 'dark',
+      description: 'theme for markdown'
+    }
   },
 
     assets: {
         test: isMarkdown,
         script: ['./assets/index.js'],
-        style: ['./assets/index.css']
+        style: ['./assets/index.css','./assets/light.css','./assets/dark.css']
     },
     services: {
         // io.call('markdown.test).then(content=> content)
@@ -28,6 +33,7 @@ module.exports = {
     },
     hooks: {
         async onRoute(ctx, next, { config }) {
+            const theme = config.get('theme'); 
             if (isMarkdown(ctx.path)) {
                 ctx.set('Content-Type', 'text/html');
                 ctx.status = 200;
@@ -38,7 +44,7 @@ module.exports = {
                             <link rel="icon" type="image/png"  href="${ICON_BASE64}">
                             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
                         </head>
-                        <body><div class="markdown-body"></div></body>
+                        <body data-theme='${theme||''}' class='${theme} markdown-body'></body>
                     </html>`;
             }
             await next();
