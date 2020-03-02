@@ -1,13 +1,18 @@
 # svrx-plugin-markdown
 
-[svrx](https://github.com/x-orpheus/svrx) plugin for markdown
+[svrx](https://github.com/x-orpheus/svrx) plugin for markdown， help us editing markdown like a ninja .
 
 ## Usage
 
 > **please confirm you have [installed svrx](https://github.com/x-orpheus/svrx) already**
 
+```shell
+npm i @svrx/cli -g
+```
+
 ## Feature
 
+- Don't rely on special editors.
 - Hot reload when file changes (not full render)
 - Auto jump to the file you are editing
 - Auto scroll to the area you are editing
